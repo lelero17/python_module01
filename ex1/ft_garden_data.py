@@ -12,7 +12,7 @@ class Plant:
 
 if __name__ == "__main__":
     plants = [
-        Plant("Rose", 20, 10),
+        Plant("Rose", 25, 30),
         Plant("Tulip", 15, 20),
         Plant("Daisy", 5, 2)
     ]
