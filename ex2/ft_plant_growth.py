@@ -24,7 +24,7 @@ class Plant:
         """Increase plant age by 1 day."""
         self.age += 1
 
-    def get_info(self):
+    def show(self):
         """Display current plant information"""
         print(f"{self.name}: {self.height}cm, {self.age} days old")
 
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print("=== Garden Plant Growth ===")
     for day in range(1, 8):
         print(f"=== Day {day} ===")
-        plant.get_info()
+        plant.show()
         plant.grow()
         plant.age_one_day()
     print(f"Growth this week: {round(plant.height - initial_height)}cm")
