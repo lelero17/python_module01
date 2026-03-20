@@ -25,8 +25,8 @@ class Plant:
         self.age += 1
 
     def show(self):
-        """Display current plant information"""
-        print(f"{self.name}: {self.height}cm, {self.age} days old")
+        """Return current plant information"""
+        return (f"{self.name}: {self.height}cm, {self.age} days old")
 
 
 if __name__ == "__main__":
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print("=== Garden Plant Growth ===")
     for day in range(1, 8):
         print(f"=== Day {day} ===")
-        plant.show()
+        print(plant.show())
         plant.grow()
         plant.age_one_day()
     print(f"Growth this week: {round(plant.height - initial_height)}cm")
