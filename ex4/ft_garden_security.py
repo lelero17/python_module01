@@ -13,7 +13,7 @@ class Plant:
         """
         self._name = name
         self._height = 0
-        self._age = 0
+        self._age_in_days = 0
         self.set_height(height)
         self.set_age(age)
 
@@ -23,7 +23,7 @@ class Plant:
 
     def get_age(self):
         """Return the plant's age."""
-        return (self._age)
+        return (self._age_in_days)
 
     def set_height(self, new_height):
         """Set the plant's height with validation.
@@ -48,30 +48,33 @@ class Plant:
             return (f"{self._name}: Error, age can't be negative\n"
                     f"Age update rejected")
         else:
-            self._age = new_age
-            return (f"Age updated: {self._age} days")
+            self._age_in_days = new_age
+            return (f"Age updated: {self._age_in_days} days")
 
     def grow(self):
         """Increase plant height by 0.8cm."""
         self._height += 0.8
         self._height = round(self._height, 1)
 
-    def age_one_day(self):
+    def age(self):
         """Increase plant age by 1 day."""
-        self._age += 1
+        self._age_in_days += 1
 
     def show(self):
         """Return plant information in factory format."""
-        return (f"{self._name}: {self._height}cm, {self._age} days old")
+        print(f"{self._name}: {self._height}cm, {self._age_in_days} days old")
 
 
 if __name__ == "__main__":
     plant = Plant("Rose", 15.0, 10)
     print("=== Garden Security System ===")
-    print(f"Plant created: {plant.show()}\n")
+    print("Plant created: ", end="")
+    plant.show()
+    print()
     print(plant.set_height(25.0))
     print(plant.set_age(30))
     print()
     print(plant.set_height(-1))
     print(plant.set_age(-1))
-    print(f"\nCurrent state: {plant.show()}")
+    print("\nCurrent state: ", end="")
+    plant.show()
