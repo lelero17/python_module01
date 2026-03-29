@@ -13,7 +13,7 @@ class Plant:
         """
         self.name = name
         self.height = height
-        self._age = age
+        self.age_in_days = age
 
     def grow(self):
         """Increase plant height by 0.8cm."""
@@ -22,11 +22,11 @@ class Plant:
 
     def age(self):
         """Increase plant age by 1 day."""
-        self._age += 1
+        self.age_in_days += 1
 
     def show(self):
         """Return current plant information"""
-        print(f"{self.name}: {self.height}cm, {self._age} days old")
+        print(f"{self.name}: {self.height}cm, {self.age_in_days} days old")
 
 
 if __name__ == "__main__":

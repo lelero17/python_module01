@@ -13,11 +13,11 @@ class Plant:
         """
         self.name = name
         self.height = height
-        self.age = age
+        self.age_in_days = age
 
     def show(self):
         """Displays the plant information."""
-        print(f"{self.name}: {self.height}cm, {self.age} days old")
+        print(f"{self.name}: {self.height}cm, {self.age_in_days} days old")
 
 
 if __name__ == "__main__":
