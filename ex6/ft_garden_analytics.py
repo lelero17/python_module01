@@ -67,31 +67,28 @@ class Plant:
         """Return plant information in factory format."""
         print(f"{self._name}: {self._height}cm, {self._age_in_days} days old")
         self._stats._show_count += 1
-        
-    
-    @staticmethod 
+
+    @staticmethod
     def is_older_than_year(age):
         """Check if age is older than an year."""
         return age > 365
-    
+
     @classmethod
     def create_anonymous(cls):
         """"Creates an anonymous plant with default values"""
         return cls("Unknown plant", 0.0, 0)
-        
+
     class Stats:
         """Track statistical data from a plant."""
         def __init__(self):
             self._grow_count = 0
             self._age_count = 0
             self._show_count = 0
-            self._shade_count = 0
-        
+
         def display(self):
             """Display the statistics"""
             print(f"Stats: {self._grow_count} grow, "
                   f"{self._age_count} age, {self._show_count} show")
-            
 
 
 class Flower(Plant):
@@ -106,7 +103,7 @@ class Flower(Plant):
             color: color of the Flower
         """
         super().__init__(name, height, age)
-        
+
         self.color = color
         self.has_bloomed = False
 
@@ -122,13 +119,13 @@ class Flower(Plant):
     def bloom(self):
         """Make the flower bloom."""
         self.has_bloomed = True
-        
+
 
 class Tree(Plant):
     """Represent a tree with trunk diameter and shade production."""
     def __init__(self, name, height, age, trunk_diameter):
         """Initialize a Tree with his attributes
-        
+
         Args:
             name: Name of the Tree.
             height: height of the Tree.
@@ -137,26 +134,25 @@ class Tree(Plant):
         """
         super().__init__(name, height, age)
         self.trunk_dia = trunk_diameter
-        self.shade = False
         self._stats = Tree.Stats()
-        
+
     def show(self):
         """Return tree information in factory format."""
         super().show()
-        print(f" Trunk diameter: {self.trunk_dia}cm") 
-            
+        print(f" Trunk diameter: {self.trunk_dia}cm")
+
     def produce_shade(self):
         """Make the tree produce a shade."""
         self._stats._shade_count += 1
         print(f"Tree {self._name} now produces a shade of "
               f"{self._height}cm long and {self.trunk_dia}cm wide.")
-    
+
     class Stats(Plant.Stats):
         """Track statistical data for a tree."""
         def __init__(self):
             super().__init__()
             self._shade_count = 0
-        
+
         def display(self):
             super().display()
             print(f" {self._shade_count} shade")
@@ -166,7 +162,7 @@ class Vegetable(Plant):
     """Represent a vegetable with harvest season and nutritional value."""
     def __init__(self, name, height, age, harvest_season, nutritional_value):
         """Initialize a Vegetable with his attributes
-        
+
         Args:
             name: Name of the Vegetable.
             height: height of the Vegetable.
@@ -183,7 +179,7 @@ class Vegetable(Plant):
         super().show()
         print(f" Harvest season: {self.harvest_season}")
         print(f" Nutritional value: {self.nutritional_value}")
-    
+
     def age(self):
         """Increase plant age by 1 day."""
         super().age()
@@ -194,32 +190,38 @@ class Seed(Flower):
     """Represent the Seeds of the flowers when the Flower has bloomed."""
     def __init__(self, name, height, age, color, num_seeds):
         """Initialize the Seed class with his attributes
-        
+
         Args:
-            has_bloomed: true if the Flower has bloomed, else false"
+            name: Name of the Seed.
+            height: height of the Seed.
+            age: age of the Seed.
+            color: color of the Seed.
+            num_seeds: number of seeds when bloomed.
         """
         super().__init__(name, height, age, color)
         self.num_seeds = num_seeds
-        
+
     def show(self):
         """Show if and how many seeds the Flower has"""
         super().show()
         print(f" Seeds: {self.num_seeds if self.has_bloomed else 0}")
-        
+
+
 def display_stats(plant):
     """Display statistics for any kind of plant"""
     plant._stats.display()
+
 
 if __name__ == "__main__":
     seed = Seed("Sunflower", 80.0, 45, "yellow", 42)
     flower = Flower("Rose", 15.0, 10, "red")
     tree = Tree("Oak", 200.0, 365, 5.0)
     print("=== Garden statistics ===\n=== Check year-old")
-    
+
     print(f"Is 30 days more than a year? -> {Plant.is_older_than_year(30)}")
-    print(f"Is 400 days more than a year? -> {Plant.is_older_than_year(400)}\n")
-    
-    print("=== Flower")
+    print(f"Is 400 days more than a year? -> {Plant.is_older_than_year(400)}")
+
+    print("\n=== Flower")
     flower.show()
     display_stats(flower)
     flower.grow()
@@ -227,14 +229,14 @@ if __name__ == "__main__":
     flower.show()
     display_stats(flower)
     print()
-    
+
     print("=== Tree")
     tree.show()
     display_stats(tree)
     tree.produce_shade()
     display_stats(tree)
     print()
-    
+
     print("=== Seed")
     seed.show()
     seed.grow()
@@ -242,7 +244,7 @@ if __name__ == "__main__":
     seed.bloom()
     seed.show()
     display_stats(seed)
-    
+
     print("\n=== Anonymous")
     anonym = Plant.create_anonymous()
     anonym.show()

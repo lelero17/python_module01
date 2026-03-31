@@ -108,7 +108,6 @@ class Tree(Plant):
         """
         super().__init__(name, height, age)
         self.trunk_dia = trunk_diameter
-        self.shade = False
         
     def show(self):
         """Return tree information in factory format."""
