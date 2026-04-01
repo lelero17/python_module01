@@ -3,7 +3,7 @@
 
 class Plant:
     """Represent a plant with basic attributes."""
-    def __init__(self, name, height, age):
+    def __init__(self, name: str, height: float, age: int) -> None:
         """Initialize a plant with his attributes.
 
         Args:
@@ -15,16 +15,16 @@ class Plant:
         self.height = height
         self.age_in_days = age
 
-    def grow(self):
+    def grow(self) -> None:
         """Increase plant height by 0.8cm."""
         self.height += 0.8
         self.height = round(self.height, 1)
 
-    def age(self):
+    def age(self) -> None:
         """Increase plant age by 1 day."""
         self.age_in_days += 1
 
-    def show(self):
+    def show(self) -> None:
         """Return current plant information"""
         print(f"{self.name}: {self.height}cm, {self.age_in_days} days old")
 
