@@ -12,10 +12,8 @@ class Plant:
             age: age of the Plant.
         """
         self._name = name
-        self._height = 0.0
-        self._age_in_days = 0
-        self.set_height(height)
-        self.set_age(age)
+        self._height = height
+        self._age_in_days = age
 
     def get_height(self) -> float:
         """Return the plant's height."""
@@ -25,31 +23,31 @@ class Plant:
         """Return the plant's age."""
         return (self._age_in_days)
 
-    def set_height(self, new_height: float) -> str:
+    def set_height(self, new_height: float) -> None:
         """Set the plant's height with validation.
 
         Args:
             new_height: New height value (must be >= 0).
         """
         if new_height < 0:
-            return (f"{self._name}: Error, height can't be negative\n"
-                    f"Height update rejected")
+            print(f"{self._name}: Error, height can't be negative\n"
+                  f"Height update rejected")
         else:
             self._height = new_height
-            return (f"Height updated: {round(self._height)}cm")
+            print(f"Height updated: {round(self._height)}cm")
 
-    def set_age(self, new_age: int) -> str:
+    def set_age(self, new_age: int) -> None:
         """Set the plant's age with validation.
 
         Args:
             new_age: New age value (must be >= 0).
         """
         if new_age < 0:
-            return (f"{self._name}: Error, age can't be negative\n"
-                    f"Age update rejected")
+            print(f"{self._name}: Error, age can't be negative\n"
+                  f"Age update rejected")
         else:
             self._age_in_days = new_age
-            return (f"Age updated: {self._age_in_days} days")
+            print(f"Age updated: {self._age_in_days} days")
 
     def grow(self) -> None:
         """Increase plant height by 0.8cm."""
@@ -71,10 +69,10 @@ if __name__ == "__main__":
     print("Plant created: ", end="")
     plant.show()
     print()
-    print(plant.set_height(25.0))
-    print(plant.set_age(30))
+    plant.set_height(25.0)
+    plant.set_age(30)
     print()
-    print(plant.set_height(-1))
-    print(plant.set_age(-1))
+    plant.set_height(-1)
+    plant.set_age(-1)
     print("\nCurrent state: ", end="")
     plant.show()
